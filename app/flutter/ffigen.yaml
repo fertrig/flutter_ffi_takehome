@@ -1,0 +1,25 @@
+# Run with `dart run ffigen --config ffigen.yaml`.
+name: DittoBindings
+description: |
+  C bindings for ditto.h
+
+  Regenerate bindings with `dart run ffigen --config ffigen.yaml`.
+output: 'lib/native/ditto_bindings.dart'
+headers:
+  entry-points:
+    - 'ephemeral/C/ditto.h'
+  include-directives:
+    - 'ephemeral/C/ditto.h'
+preamble: |
+  // ignore_for_file: always_specify_types
+  // ignore_for_file: camel_case_types
+  // ignore_for_file: non_constant_identifier_names
+comments:
+  style: any
+  length: full
+type-map:
+  native-types:
+    'char':
+      'lib': 'pkg_ffi'
+      'c-type': 'Utf8'
+      'dart-type': 'Utf8'

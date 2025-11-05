@@ -1,11 +1,13 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/opt/homebrew/Caskroom/flutter/3.29.3/flutter
-FLUTTER_APPLICATION_PATH=/Users/nickrobinson/Development/sandbox/flutter-interview-module/app/flutter
+FLUTTER_ROOT=/Users/fertrig/fvm/versions/3.35.7
+FLUTTER_APPLICATION_PATH=/Users/fertrig/development/scratch/ditto/flutter_ffi_takehome/app/flutter
 COCOAPODS_PARALLEL_CODE_SIGN=true
+FLUTTER_TARGET=/Users/fertrig/development/scratch/ditto/flutter_ffi_takehome/app/flutter/lib/main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
+DART_DEFINES=RkxVVFRFUl9WRVJTSU9OPTMuMzUuNw==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049YWRjOTAxMDYyNQ==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049MDM1MzE2NTY1YQ==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My45LjI=
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
-PACKAGE_CONFIG=.dart_tool/package_config.json
+PACKAGE_CONFIG=/Users/fertrig/development/scratch/ditto/flutter_ffi_takehome/app/flutter/.dart_tool/package_config.json
