@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'package:path/path.dart' as p;
 
 class NativeLibraryLoadError extends Error {
   final String path;
@@ -10,13 +11,15 @@ class NativeLibraryLoadError extends Error {
       'NativeLibraryLoadError: Failed to load native library $path\n$error';
 }
 
-DynamicLibrary loadNativeLibrary() {
+/// Loads the native library from the specified directory path.
+/// If no directory path is specified, the library is loaded from the current directory.
+DynamicLibrary loadNativeLibrary({String directoryPath = ''}) {
   if (Platform.isMacOS) {
-    return _loadNativeLibrary('libdittoffi.dylib');
+    return _loadNativeLibrary(p.join(directoryPath, 'libdittoffi.dylib'));
   } else if (Platform.isLinux) {
-    return _loadNativeLibrary('libdittoffi.so');
+    return _loadNativeLibrary(p.join(directoryPath, 'libdittoffi.so'));
   } else if (Platform.isWindows) {
-    return _loadNativeLibrary('dittoffi.dll');
+    return _loadNativeLibrary(p.join(directoryPath, 'dittoffi.dll'));
   } else {
     throw UnsupportedError('Unsupported platform: ${Platform.operatingSystem}');
   }
