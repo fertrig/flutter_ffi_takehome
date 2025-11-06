@@ -36,7 +36,6 @@ class DittoDb {
 
     final dbPtrPtr = calloc<Pointer<ditto_db_t>>();
     final pathPtr = path.toNativeUtf8();
-    final subIdPtr = calloc<Int32>();
 
     try {
       final rc = bindings.ditto_open(pathPtr, dbPtrPtr);
@@ -47,7 +46,6 @@ class DittoDb {
     } finally {
       malloc.free(pathPtr);
       calloc.free(dbPtrPtr);
-      calloc.free(subIdPtr);
     }
   }
 
@@ -77,7 +75,7 @@ class DittoDb {
     final instanceId = userData.cast<IntPtr>().value;
     final instance = _instances[instanceId];
 
-    if (instance != null) {
+    if (instance != null && !instance._changeController.isClosed) {
       final key = keyPtr.toDartString();
       instance._changeController.add(key);
     }
@@ -89,13 +87,13 @@ class DittoDb {
     }
     if (isSubscribed) {
       bindings.ditto_unsubscribe(_handle, _subId!);
+      _subId = null;
     }
-    bindings.ditto_close(_handle);
     _changeController.close();
     _instances.remove(_instanceId);
     calloc.free(_instanceIdPtr);
+    bindings.ditto_close(_handle);
     _dbPtr = null;
-    _subId = null;
   }
 
   void put(String key, Uint8List value) {
@@ -172,6 +170,11 @@ class DittoDb {
     } finally {
       malloc.free(keyPtr);
     }
+  }
+
+  String version() {
+    final versionPtr = bindings.ditto_version();
+    return versionPtr.toDartString();
   }
 }
 

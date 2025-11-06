@@ -111,6 +111,11 @@ class _DefaultPageState extends State<DefaultPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ditto Database'),
+        centerTitle: true,
+        actions: [
+          Text('Version: ${_db.version()}'),
+          const SizedBox(width: spacing * 2)
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(spacing),
@@ -177,11 +182,13 @@ class _DefaultPageState extends State<DefaultPage> {
                           style: Theme.of(context).textTheme.titleLarge),
                       const SizedBox(height: spacing),
                       Expanded(
-                          child: ListView.builder(
+                          child: ListView.separated(
                         itemBuilder: (context, index) {
                           return Text(_keysChanged[index],
                               style: Theme.of(context).textTheme.bodyLarge);
                         },
+                        separatorBuilder: (context, index) =>
+                            Divider(thickness: 0, color: Colors.grey.shade300),
                         itemCount: _keysChanged.length,
                       ))
                     ])),
